@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drop Coffee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      coffee: {
+                          light: '#D7A98C',
+                          DEFAULT: '#8B5E34',
+                          dark: '#5C3A2D',
+                      },
+                  },
+                  screens: {
+                      'tablet': '640px',
+                      'laptop': '1024px',
+                      'desktop': '1280px',
+                  },
+              },
+          },
+      };
+  </script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <header class="bg-white shadow">
+        <nav class="bg-white shadow-lg fixed w-full z-50">
+          <div class="container mx-auto px-4 flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center">
+              <img src="assets/logo.png" alt="Drop Coffee" class="h-16 tablet:h-20 w-16 tablet:w-20 mr-2"" />
+            </a>
+      
+            <!-- Navbar untuk mode dekstop dan tablet -->
+            <div id="navbarMenu" class="hidden tablet:flex flex-1 justify-center space-x-4 laptop:space-x-6">
+              <a href="#home" class="text-gray-700 font-serif hover:text-coffee transition">Home</a>
+              <a href="#product" class="text-gray-700 font-serif hover:text-coffee transition">Products</a>
+              <a href="#room" class="text-gray-700 font-serif hover:text-coffee transition">Rooms</a>
+              <a href="#about" class="text-gray-700 font-serif hover:text-coffee transition">About Us</a>
+            </div>
+      
+            <!-- Class untuk masukan ke keranjang -->
+          <div class="flex items-center space-x-6">
+            <a href="#" class="text-gray-700 hidden tablet:inline-block">
+              <i data-feather="shopping-bag" class="h-5 w-5"></i>
+            </a>
+          </div>
+      
+            <!-- Hamburger Icon -->
+            <button
+              id="navbarToggle"
+              class="block tablet:hidden text-gray-700 focus:outline-none"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+      
+          <!-- Dropdown Menu (Mobile) -->
+          <div id="dropdownMenu" class="hidden bg-white shadow-md tablet:hidden">
+            <a href="#home" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Home</a>
+            <a href="#product" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Products</a>
+            <a href="#room class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Rooms</a>
+            <a href="#about" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">About Us</a>
+      
+            <!-- Search & Shopping Bag (Mobile) -->
+            <div class="flex items-center justify-center space-x-6 mt-4">
+              <a href="#" class="text-gray-700">
+                <i data-feather="shopping-bag" class="h-5 w-5"></i>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="relative bg-cover bg-center bg-no-repeat h-[100vh]"
+      style="background-image: url('assets/bg.jpg')"
+    >
+      <div
+        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      >
+        <div class="text-center text-white px-6">
+          <h1 class="text-4xl font-bold md:text-5xl font-awesome">
+            Nikmatilah Kopi Favorite anda Bersama
+            <span class="text-coffee fo">dropCoffee</span>
+          </h1>
+          <p class="mt-4 text-lg md:text-xl font-['Road']">
+            Temukan Pengalaman Menarik Anda di Coffeshop kami
+          </p>
+          <br>
+          <a
+            href="About.html"
+            class="mt-6 inline-block bg-coffee text-white px-6 py-3 font-serif rounded shadow hover:bg-coffee-dark transition"
+          >
+            Read more          
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Products Section -->
+    <section id="product" class="bg-white py-12">
+      <div class="container mx-auto px-6">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mt-5 font-serif">
+          Our Products
+        </h2>
+        <p class="text-center text-gray-500 mt-2 font-serif">From Top Quality Materials</p>
+
+        <!-- Tabs -->
+        <div class="flex justify-center space-x-6 mt-6">
+          <button
+            id="tabCoffee"
+            class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition"
+          >
+            COFFEE
+          </button>
+          <button
+            id="tabNonCoffee"
+            class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition"
+          >
+            NON-COFFEE
+          </button>
+          <button
+            id="tabFood"
+            class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition"
+          >
+            FOOD
+          </button>
+        </div>
+
+        <!-- Coffee Products -->
+          <div id="coffeeProducts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+            <!-- Chocolate Latte -->
+            <div class="bg-gray-100 p-4 shadow rounded">
+              <img src="assets/kopi1.png" alt="Chocolate Latte" class="w-full rounded-t" />
+              <h3 class="font-semibold text-lg mt-4 text-coffee">Chocolate Latte</h3>
+              <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(360 reviews)</span></div>
+              <p class="text-gray-500 mt-2">
+                "Chocolate latte adalah perpaduan sempurna antara rasa manis cokelat dan kehangatan susu, menciptakan minuman yang lembut dan memanjakan."
+              </p>
+              <div class="flex justify-between items-center mt-4">
+                <span class="text-gray-700">30K</span>
+                <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
+              </div>
+            </div>
+            <!-- Mocha Latte -->
+            <div class="bg-gray-100 p-4 shadow rounded">
+              <img src="assets/kopi2.png" alt="Mocha Latte" class="w-full rounded-t" />
+              <h3 class="font-semibold text-lg mt-4 text-coffee">Mocha Latte</h3>
+              <div class="text-yellow-500 mt-2">⭐ 5.0 <span class="text-gray-500">(180 reviews)</span></div>
+              <p class="text-gray-500 mt-2">
+                "Mocha latte adalah perpaduan sempurna antara kopi, cokelat, dan susu yang menciptakan rasa manis dan lembut dengan sentuhan kehangatan."
+              </p>
+              <div class="flex justify-between items-center mt-4">
+                <span class="text-gray-700">32K</span>
+                <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
+              </div>
+            </div>
+            <!-- Coffee Latte -->
+            <div class="bg-gray-100 p-4 shadow rounded">
+              <img src="assets/kopi3.png" alt="Coffee Latte" class="w-full rounded-t" />
+              <h3 class="font-semibold text-lg mt-4 text-coffee">Coffee Latte</h3>
+              <div class="text-yellow-500 mt-2">⭐ 4.8 <span class="text-gray-500">(450 reviews)</span></div>
+              <p class="text-gray-500 mt-2">
+                “Coffee latte adalah minuman kopi yang lembut dan creamy, perpaduan sempurna antara espresso dan susu yang dihangatkan.”
+              </p>
+              <div class="flex justify-between items-center mt-4">
+                <span class="text-gray-700">32K</span>
+                <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
+              </div>
+            </div>
+            <!-- Hazelnut Latte -->
+            <div class="bg-gray-100 p-4 shadow rounded">
+              <img src="assets/kopi4.png" alt="Hazelnut Latte" class="w-full rounded-t" />
+              <h3 class="font-semibold text-lg mt-4 text-coffee">Hazelnut Latte</h3>
+              <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(390 reviews)</span></div>
+              <p class="text-gray-500 mt-2">
+                “Hazelnut latte adalah minuman kopi yang lembut dan aromatik, memadukan espresso, susu hangat, dan sirup hazelnut untuk cita rasa yang manis dan kaya.”
+              </p>
+              <div class="flex justify-between items-center mt-4">
+                <span class="text-gray-700">35K</span>
+                <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
+              </div>
+            </div>
+        </div>
+
+        <!-- Non-Coffee Products -->
+        <div
+          id="nonCoffeeProducts"
+          class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mt-8"
+        >
+          <!-- Matcha -->
+          <div class="bg-gray-100 p-4 shadow rounded max-w-md mx-auto rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+            <img
+              src="assets/matcha.png"
+              alt="Matcha"
+              class="w-full rounded-t"
+            />
+            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">Matcha</h3>
+            <div class="text-yellow-500 mt-2">
+              ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
+            </div>
+            <p class="text-gray-500 mt-2">
+              “Matcha memiliki rasa khas yang lembut dan kaya akan antioksidan,
+              memberikan energi yang tahan lama.”
+            </p>
+            <br>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-gray-700">35K</span>
+              <button
+                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <!-- red velvet -->
+          <div class="bg-gray-100 p-4 shadow rounded">
+            <img
+              src="assets/redvelvet.png"
+              alt="Red Velvet"
+              class="w-full rounded-t"
+            />
+            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">Red Velvet</h3>
+            <div class="text-yellow-500 mt-2">
+              ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
+            </div>
+            <p class="text-gray-500 mt-2">
+              “Red Velvet menawarkan perpaduan rasa cokelat yang lembut dan
+              manis dengan tekstur yang lembut dan creamy.”
+            </p>
+            <br>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-gray-700">33K</span>
+              <button
+                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <!-- Choco Hazelnut-->
+          <div class="bg-gray-100 p-4 shadow rounded">
+            <img
+              src="assets/choco.png"
+              alt="Choco Hazelnut"
+              class="w-full rounded-t"
+            />
+            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
+              Choco Hazelnut
+            </h3>
+            <div class="text-yellow-500 mt-2">
+              ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
+            </div>
+            <p class="text-gray-500 mt-2">
+              “Choco Hazelnut memadukan rasa cokelat kaya dengan kacang hazelnut
+              yang gurih, menciptakan sensasi nikmat yang memanjakan lidah.”
+            </p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-gray-700">30K</span>
+              <button
+                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <!-- Taro -->
+          <div class="bg-gray-100 p-4 shadow rounded">
+            <img src="assets/taro.png" alt="Taro" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">Taro</h3>
+            <div class="text-yellow-500 mt-2">
+              ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
+            </div>
+            <p class="text-gray-500 mt-2">
+              “Taro memiliki rasa manis dan gurih dengan warna ungu yang khas,
+              memberikan sensasi lembut yang menyegarkan.”
+            </p>
+            <br>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-gray-700">20K</span>
+              <button
+                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="foodProducts"
+          class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mt-8"
+        >
+          <!--Tiramisu Cake -->
+          <div class="bg-gray-100 p-4 shadow rounded">
+            <img
+              src="assets/tiramisu.png"
+              alt="Tiramisu Cake"
+              class="w-full rounded-t"
+            />
+            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
+              Tiramisu Cake
+            </h3>
+            <div class="text-yellow-500 mt-2">
+              ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
+            </div>
+            <p class="text-gray-500 mt-2">
+              Tiramisu cake adalah cake lezat yang memadukan rasa manis dan
+              kopi, dengan lapisan krim mascarpone yang lembut dan kenikmatan
+              cokelat yang menggoda.
+            </p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-gray-700">45K</span>
+              <button
+                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <!-- Croissants -->
+          <div class="bg-gray-100 p-4 shadow rounded">
+            <img
+              src="assets/croissants.png"
+              alt="Croissants"
+              class="w-full rounded-t"
+            />
+            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">Croissants</h3>
+            <div class="text-yellow-500 mt-2">
+              ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
+            </div>
+            <p class="text-gray-500 mt-2">
+              Roti khas Prancis berbentuk bulan sabit dengan tekstur renyah di
+              luar dan lembut berlapis di dalam, kaya rasa mentega. Cocok
+              dinikmati dengan kopi atau teh.
+            </p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-gray-700">20K</span>
+              <button
+                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <!-- Waffle & Ice Cream -->
+          <div class="bg-gray-100 p-4 shadow rounded">
+            <img
+              src="assets/waffle.png"
+              alt="Waffle & Ice Cream"
+              class="w-full rounded-t"
+            />
+            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
+              Waffle & Ice Cream
+            </h3>
+            <div class="text-yellow-500 mt-2">
+              ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
+            </div>
+            <p class="text-gray-500 mt-2">
+              Waffle hangat yang renyah di luar dan lembut di dalam, disajikan
+              dengan satu scoop es krim creamy pilihan Anda. Paduan sempurna
+              untuk manisnya hari Anda.
+            </p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-gray-700">30K</span>
+              <button
+                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <!-- Macaron -->
+          <div class="bg-gray-100 p-4 shadow rounded">
+            <img
+              src="assets/macaron.png"
+              alt="Macaron"
+              class="w-full rounded-t"
+            />
+            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">Macaron</h3>
+            <div class="text-yellow-500 mt-2">
+              ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
+            </div>
+            <p class="text-gray-500 mt-2">
+              Kue mungil khas Prancis dengan tekstur renyah di luar dan lembut
+              di dalam, diisi krim manis beragam rasa. Elegan dan lezat untuk
+              dinikmati kapan saja.
+            </p>
+            <div class="flex justify-between items-center mt-4">
+              <span class="text-gray-700">35K</span>
+              <button
+                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-6">
+        <a
+          href="product.html"
+          class="inline-block bg-coffee text-white py-2 px-4 rounded font-serif hover:bg-coffee-dark"
+          >Read More</a
+        >
+      </div>
+    </section>
+
+    <section id="room" class="bg-gray-100 py-12">
+      <div class="container mx-auto px-6">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mt-5">
+          Fasilitas Room Yang Tersedia
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <!-- Indoor Room -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/indoor.jpg"
+              alt="Indoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg">Indoor Room</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Indoor Room sangat cocok bagi kalian yang ingin bersantai
+                karena tempatnya adalah tempat bebas asap rokok
+              </a>
+            </div>
+          </div>
+          <!-- VIP Room -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/vip-room.jpg"
+              alt="VIP Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg">VIP Room</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Fasilitas cukup lengkap salah satunya terdapat AC yang bikin
+                kalian makin betah && dan juga ruangan ini sangat cocok untuk
+                meeting</a
+              >
+            </div>
+          </div>
+          <!-- Outdoor Room -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/outdoor.jpg"
+              alt="Outdoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg">Outdoor Room</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Outdoor Room selain dapat melihat pemandangan yang indah juga
+                bisa ngerokok agar tetap santai terus
+              </a>
+            </div>
+          </div>
+          <!-- Toilet -->
+          <div class="bg-white shadow rounded overflow-hidden justify">
+            <img
+              src="assets/toilet.jpg"
+              alt="Outdoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg">Toilet</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Toilet nya sangat bersih supaya membuat klien lebih nyaman
+              </a>
+            </div>
+          </div>
+          <!-- Live Music -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/Live Music.jpg"
+              alt="Outdoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg">Live Music</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Jangan lupa saksikan Live Music dari kami yang biasa diadakan
+                di malam minggu dan juga bisa di hari lain kalau ada yang
+                berkenan untuk mengisi panggungnya.
+              </a>
+            </div>
+          </div>
+          <!-- Musholla -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/Musholla.jpg"
+              alt="Outdoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg">Musholla</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Tidak perlu hawatir ketinggalan sholat ketika lagi nongkrong
+                karena kita menyediakan Musholla</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- About Us -->
+    <br />
+    <section id="about" class="bg-white py-16">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-center lg:space-x-10">
+          <!-- Konten Teks -->
+          <div class="lg:w-1/2">
+            <h2 class="text-4xl font-bold text-coffee-dark mb-4">
+              Tentang Kami
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-6">
+              Drop Coffee adalah tempat yang nyaman untuk menikmati secangkir
+              kopi terbaik di Jakarta Selatan. Kami memadukan rasa autentik
+              dengan suasana yang hangat dan ramah untuk memberikan pengalaman
+              terbaik bagi para pengunjung.
+            </p>
+            <ul class="space-y-4">
+              <li class="flex items-center">
+                <i data-feather="coffee" class="text-coffee mr-3 h-6 w-6"></i>
+                <span class="text-gray-700"
+                  >Kopi premium dari petani lokal</span
+                >
+              </li>
+              <li class="flex items-center">
+                <i data-feather="map-pin" class="text-coffee mr-3 h-6 w-6"></i>
+                <span class="text-gray-700"
+                  >Lokasi strategis di Jakarta Selatan</span
+                >
+              </li>
+              <li class="flex items-center">
+                <i data-feather="smile" class="text-coffee mr-3 h-6 w-6"></i>
+                <span class="text-gray-700"
+                  >Pelayanan yang ramah dan profesional</span
+                >
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              class="mt-6 inline-block bg-coffee text-white py-2 px-6 rounded-lg hover:bg-coffee-dark transition"
+            >
+              Hubungi Kami
+            </a>
+          </div>
+      
+            <!-- Gambar -->
+            <div class="lg:w-1/2 mt-10 lg:mt-0 relative">
+              <img src="assets/abt.jpg" alt="Tentang Kami" class="rounded-lg shadow-lg hover:scale-105 transition transform duration-300">
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Footer -->
+    <footer class="bg-coffee-dark text-white py-12">
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- About -->
+        <div>
+          <h3 class="font-semibold text-lg font-serif">drop.Coffee</h3>
+          <p class="mt-4 text-gray-300 font-serif">
+            Nikmati keseruan bersama drop coffe dan nikmati kopi favorite anda yang anda sukai
+            Untuk info selanjutnya hubungi contact person dibawah ini:
+          </p>
+          <p class="mt-4 text-gray-300 font-serif">dropCoffee@gmail.com</p>
+          <p class="text-gray-300">Phone: +62 86538263637</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="md:ml-4">
+          <!-- Geser Quick Links ke kanan -->
+          <h3 class="font-semibold text-lg font-serif">Quick Links</h3>
+          <ul class="mt-4 space-y-2 text-gray-300 font-serif">
+            <li><a href="about.html" class="hover:underline">Services</a></li>
+            <li><a href="about.html" class="hover:underline">Portfolio</a></li>
+            <li><a href="about.html" class="hover:underline">About</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h3 class="font-bold text-lg font-serif">Resources</h3>
+          <ul class="mt-4 space-y-2 text-gray-300 font-serif">
+            <li><a href="#" class="hover:underline">Support</a></li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+            <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media & Email Form -->
+        <div>
+          <h3 class="font-bold text-lg font-serif">Social Media</h3>
+          <ul class="flex space-x-4 mt-4">
+            <li>
+              <a href="https://www.instagram.com/fdzryds/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/alyscy_/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/dacamokid/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/daffayssr/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/ican.6/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+          </ul>
+          <form 
+            class="mt-6"
+            action="mailto:fadzry1603@gmail.com" 
+            method="POST" 
+            enctype="text/plain"
+          >
+            <input
+              type="text"
+              name="text"
+              placeholder="Masukan Saran & Kritik anda"
+              class="px-4 py-2 w-full rounded bg-white text-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+              required
+            />
+            <button
+              class="mt-2 w-full bg-coffee py-2 px-4 font-serif rounded hover:bg-coffee-dark"
+              type="submit"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document
+        .getElementById("navbarToggle")
+        .addEventListener("click", function () {
+          const dropdownMenu = document.getElementById("dropdownMenu");
+          dropdownMenu.classList.toggle("hidden");
+        });
+
+      feather.replace();
+
+      // Referensi elemen
+      const tabCoffee = document.getElementById("tabCoffee");
+      const tabNonCoffee = document.getElementById("tabNonCoffee");
+      const tabFood = document.getElementById("tabFood");
+      const coffeeProducts = document.getElementById("coffeeProducts");
+      const nonCoffeeProducts = document.getElementById("nonCoffeeProducts");
+      const foodProducts = document.getElementById("foodProducts");
+
+      // Fungsi untuk mengganti tampilan produk
+      function showProducts(category) {
+        if (category === "coffee") {
+          coffeeProducts.classList.remove("hidden");
+          nonCoffeeProducts.classList.add("hidden");
+          foodProducts.classList.add("hidden");
+        } else if (category === "noncoffee") {
+          nonCoffeeProducts.classList.remove("hidden");
+          coffeeProducts.classList.add("hidden");
+          foodProducts.classList.add("hidden");
+        } else if (category === "food") {
+          foodProducts.classList.remove("hidden");
+          coffeeProducts.classList.add("hidden");
+          nonCoffeeProducts.classList.add("hidden");
+        }
+      }
+
+      // Event listener
+      tabCoffee.addEventListener("click", () => showProducts("coffee"));
+      tabNonCoffee.addEventListener("click", () => showProducts("noncoffee"));
+      tabFood.addEventListener("click", () => showProducts("food"));
+
+      // Toggle menu agar responsive
+      document
+        .getElementById("menuToggle")
+        .addEventListener("click", function () {
+          const menu = document.getElementById("menu");
+          menu.classList.toggle("hidden");
+        });
+
+        document.getElementById('navbarToggle').addEventListener('click', function () {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('hidden');
+       });
+        feather.replace();
+    </script>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </body>
+</html>

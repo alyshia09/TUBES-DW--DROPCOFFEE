@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drop Coffee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      coffee: {
+                          light: '#D7A98C',
+                          DEFAULT: '#8B5E34',
+                          dark: '#5C3A2D',
+                      },
+                  },
+                  screens: {
+                      'tablet': '640px',
+                      'laptop': '1024px',
+                      'desktop': '1280px',
+                  },
+              },
+          },
+      };
+  </script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <header class="bg-white shadow">
+        <nav class="bg-white shadow-lg fixed w-full z-50">
+          <div class="container mx-auto px-4 flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center">
+              <img src="assets/logo.png" alt="Drop Coffee" class="h-16 tablet:h-20 w-16 tablet:w-20 mr-2"" />
+            </a>
+      
+            <!-- Navbar untuk mode dekstop dan tablet -->
+            <div id="navbarMenu" class="hidden tablet:flex flex-1 justify-center space-x-4 laptop:space-x-6">
+              <a href="index.html" class="text-gray-700 font-serif hover:text-coffee transition">Home</a>
+              <a href="product.html" class="text-gray-700 font-serif hover:text-coffee transition">Products</a>
+              <a href="room.html" class="text-gray-700 font-serif hover:text-coffee transition">Rooms</a>
+              <a href="about.html" class="text-gray-700 font-serif hover:text-coffee transition">About Us</a>
+            </div>
+      
+            <!-- Class untuk masukan ke keranjang -->
+          <div class="flex items-center space-x-6">
+            <a href="#" class="text-gray-700 hidden tablet:inline-block">
+              <i data-feather="shopping-bag" class="h-5 w-5"></i>
+            </a>
+          </div>
+      
+            <!-- Hamburger Icon -->
+            <button
+              id="navbarToggle"
+              class="block tablet:hidden text-gray-700 focus:outline-none"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+      
+          <!-- Dropdown Menu (Mobile) -->
+          <div id="dropdownMenu" class="hidden bg-white shadow-md tablet:hidden">
+            <a href="index.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Home</a>
+            <a href="product.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Products</a>
+            <a href="room.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Rooms</a>
+            <a href="about.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">About Us</a>
+      
+            <!-- Search & Shopping Bag (Mobile) -->
+            <div class="flex items-center justify-center space-x-6 mt-4">
+              <a href="#" class="text-gray-700">
+                <i data-feather="search" class="h-5 w-5"></i>
+              </a>
+              <a href="#" class="text-gray-700">
+                <i data-feather="shopping-bag" class="h-5 w-5"></i>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+    <!-- Main Content -->
+    <section id="room" class="bg-gray-100 py-12">
+      <div class="container mx-auto px-6">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mt-5 font-serif">
+          Fasilitas Room Yang Tersedia
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <!-- Indoor Room -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/indoor.jpg"
+              alt="Indoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg font-serif">Indoor Room</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Indoor Room sangat cocok bagi kalian yang ingin bersantai
+                karena tempatnya adalah tempat bebas asap rokok
+              </a>
+            </div>
+          </div>
+          <!-- VIP Room -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/vip-room.jpg"
+              alt="VIP Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg font-serif">VIP Room</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Fasilitas cukup lengkap salah satunya terdapat AC yang bikin
+                kalian makin betah && dan juga ruangan ini sangat cocok untuk
+                meeting</a
+              >
+            </div>
+          </div>
+          <!-- Outdoor Room -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/outdoor.jpg"
+              alt="Outdoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg font-serif">Outdoor Room</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Outdoor Room selain dapat melihat pemandangan yang indah juga
+                bisa ngerokok agar tetap santai terus
+              </a>
+            </div>
+          </div>
+          <!-- Toilet -->
+          <div class="bg-white shadow rounded overflow-hidden justify">
+            <img
+              src="assets/toilet.jpg"
+              alt="Outdoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg font-serif">Toilet</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Toilet nya sangat bersih supaya membuat klien lebih nyaman
+              </a>
+            </div>
+          </div>
+          <!-- Live Music -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/Live Music.jpg"
+              alt="Outdoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg font-serif">Live Music</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Jangan lupa saksikan Live Music dari kami yang biasa diadakan
+                di malam minggu dan juga bisa di hari lain kalau ada yang
+                berkenan untuk mengisi panggungnya.
+              </a>
+            </div>
+          </div>
+          <!-- Musholla -->
+          <div class="bg-white shadow rounded overflow-hidden">
+            <img
+              src="assets/Musholla.jpg"
+              alt="Outdoor Room"
+              class="w-full h-60 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="font-semibold text-lg font-serif">Musholla</h3>
+              <a href="room.html" class="mt-2 text-gray-600"
+                >Tidak perlu hawatir ketinggalan sholat ketika lagi nongkrong
+                karena kita menyediakan Musholla</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-coffee-dark text-white py-12">
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- About -->
+        <div>
+          <h3 class="font-semibold text-lg font-serif">drop.Coffee</h3>
+          <p class="mt-4 text-gray-300 font-serif">
+            Nikmati keseruan bersama drop coffe dan nikmati kopi favorite anda yang anda sukai
+            Untuk info selanjutnya hubungi contact person dibawah ini:
+          </p>
+          <p class="mt-4 text-gray-300 font-serif">dropCoffee@gmail.com</p>
+          <p class="text-gray-300 font-serif">Phone: +62 86538263637</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="md:ml-4">
+          <!-- Geser Quick Links ke kanan -->
+          <h3 class="font-semibold text-lg font-serif">Quick Links</h3>
+          <ul class="mt-4 space-y-2 text-gray-300 font-serif">
+            <li><a href="about.html" class="hover:underline">Services</a></li>
+            <li><a href="about.html" class="hover:underline">Portfolio</a></li>
+            <li><a href="about.html" class="hover:underline">About</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h3 class="font-semibold text-lg font-serif">Resources</h3>
+          <ul class="mt-4 space-y-2 text-gray-300 font-serif">
+            <li><a href="#" class="hover:underline">Support</a></li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+            <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media & Email Form -->
+        <div>
+          <h3 class="font-semibold text-lg font-serif">Social Media</h3>
+          <ul class="flex space-x-4 mt-4">
+            <li>
+              <a href="https://www.instagram.com/fdzryds/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/alyscy_/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/dacamokid/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/daffayssr/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/ican.6/" class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </li>
+          </ul>
+          <form class="mt-6">
+            <input
+              type="email"
+              placeholder="name@domain.com"
+              class="px-4 py-2 w-full rounded bg-white text-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+            />
+            <button
+              class="mt-2 w-full bg-coffee py-2 px-4 font-serif rounded hover:bg-coffee-dark"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document
+        .getElementById("navbarToggle")
+        .addEventListener("click", function () {
+          const dropdownMenu = document.getElementById("dropdownMenu");
+          dropdownMenu.classList.toggle("hidden");
+        });
+
+      feather.replace();
+    </script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </body>
+</html>
