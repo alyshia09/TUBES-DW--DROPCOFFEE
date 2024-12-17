@@ -11,15 +11,15 @@
           extend: {
             colors: {
               coffee: {
-                light: '#D7A98C',
-                DEFAULT: '#8B5E34',
-                dark: '#5C3A2D',
+                light: "#D7A98C",
+                DEFAULT: "#8B5E34",
+                dark: "#5C3A2D",
               },
             },
             screens: {
-              tablet: '640px',
-              laptop: '1024px',
-              desktop: '1280px',
+              tablet: "640px",
+              laptop: "1024px",
+              desktop: "1280px",
             },
           },
         },
@@ -31,16 +31,40 @@
   <body class="bg-gray-100">
     <header class="bg-white shadow">
       <nav class="bg-white shadow-lg fixed w-full z-50">
-        <div class="container mx-auto px-4 flex items-center justify-between h-16">
+        <div
+          class="container mx-auto px-4 flex items-center justify-between h-16"
+        >
           <!-- Logo -->
-          <a href="index.html" class="flex items-center"> <img src="assets/logo.png" alt="Drop Coffee" class="h-16 tablet:h-20 w-16 tablet:w-20 mr-2"" /> </a>
+          <a href="index.html" class="flex items-center">
+            <img src="assets/logo.png" alt="Drop Coffee" class="h-16 tablet:h-20
+            w-16 tablet:w-20 mr-2"" />
+          </a>
 
           <!-- Navbar untuk mode dekstop dan tablet -->
-          <div id="navbarMenu" class="hidden tablet:flex flex-1 justify-center space-x-4 laptop:space-x-6">
-            <a href="index.html" class="text-gray-700 font-serif hover:text-coffee transition">Home</a>
-            <a href="product.html" class="text-gray-700 font-serif hover:text-coffee transition">Products</a>
-            <a href="room.html" class="text-gray-700 font-serif hover:text-coffee transition">Rooms</a>
-            <a href="about.html" class="text-gray-700 font-serif hover:text-coffee transition">About Us</a>
+          <div
+            id="navbarMenu"
+            class="hidden tablet:flex flex-1 justify-center space-x-4 laptop:space-x-6"
+          >
+            <a
+              href="index.html"
+              class="text-gray-700 font-serif hover:text-coffee transition"
+              >Home</a
+            >
+            <a
+              href="product.html"
+              class="text-gray-700 font-serif hover:text-coffee transition"
+              >Products</a
+            >
+            <a
+              href="room.html"
+              class="text-gray-700 font-serif hover:text-coffee transition"
+              >Rooms</a
+            >
+            <a
+              href="about.html"
+              class="text-gray-700 font-serif hover:text-coffee transition"
+              >About Us</a
+            >
           </div>
 
           <!-- Class untuk masukan ke keranjang -->
@@ -51,19 +75,49 @@
           </div>
 
           <!-- Hamburger Icon -->
-          <button id="navbarToggle" class="block tablet:hidden text-gray-700 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <button
+            id="navbarToggle"
+            class="block tablet:hidden text-gray-700 focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
         </div>
 
         <!-- Dropdown Menu (Mobile) -->
         <div id="dropdownMenu" class="hidden bg-white shadow-md tablet:hidden">
-          <a href="index.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Home</a>
-          <a href="product.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Products</a>
-          <a href="room.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Rooms</a>
-          <a href="about.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">About Us</a>
+          <a
+            href="index.html"
+            class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition"
+            >Home</a
+          >
+          <a
+            href="product.html"
+            class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition"
+            >Products</a
+          >
+          <a
+            href="room.html"
+            class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition"
+            >Rooms</a
+          >
+          <a
+            href="about.html"
+            class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition"
+            >About Us</a
+          >
 
           <!-- Search & Shopping Bag (Mobile) -->
           <div class="flex items-center justify-center space-x-6 mt-4">
@@ -81,33 +135,57 @@
     <br />
     <section class="bg-white py-8 tablet:py-16">
       <div class="container mx-auto px-6">
-        <div class="flex flex-col laptop:flex-row items-center laptop:space-x-10">
+        <div
+          class="flex flex-col laptop:flex-row items-center laptop:space-x-10"
+        >
           <!-- Konten Teks -->
           <div class="laptop:w-1/2">
-            <h2 class="text-2xl tablet:text-4xl font-bold text-coffee-dark mb-4 font-serif">Tentang Kami</h2>
+            <h2
+              class="text-2xl tablet:text-4xl font-bold text-coffee-dark mb-4 font-serif"
+            >
+              Tentang Kami
+            </h2>
             <p class="text-gray-700 leading-relaxed mb-6 font-serif">
-              Drop Coffee adalah tempat yang nyaman untuk menikmati secangkir kopi terbaik di Jakarta Selatan. Kami memadukan rasa autentik dengan suasana yang hangat dan ramah untuk memberikan pengalaman terbaik bagi para pengunjung.
+              Drop Coffee adalah tempat yang nyaman untuk menikmati secangkir
+              kopi terbaik di Jakarta Selatan. Kami memadukan rasa autentik
+              dengan suasana yang hangat dan ramah untuk memberikan pengalaman
+              terbaik bagi para pengunjung.
             </p>
             <ul class="space-y-4">
               <li class="flex items-center">
                 <i data-feather="coffee" class="text-coffee mr-3 h-6 w-6"></i>
-                <span class="text-gray-700 font-serif">Kopi premium dari petani lokal</span>
+                <span class="text-gray-700 font-serif"
+                  >Kopi premium dari petani lokal</span
+                >
               </li>
               <li class="flex items-center">
                 <i data-feather="map-pin" class="text-coffee mr-3 h-6 w-6"></i>
-                <span class="text-gray-700 font-serif">Lokasi strategis di Jakarta Selatan</span>
+                <span class="text-gray-700 font-serif"
+                  >Lokasi strategis di Jakarta Selatan</span
+                >
               </li>
               <li class="flex items-center">
                 <i data-feather="smile" class="text-coffee mr-3 h-6 w-6"></i>
-                <span class="text-gray-700 font-serif">Pelayanan yang ramah dan profesional</span>
+                <span class="text-gray-700 font-serif"
+                  >Pelayanan yang ramah dan profesional</span
+                >
               </li>
             </ul>
-            <a href="#contact" class="mt-6 inline-block bg-coffee text-white py-2 px-6 font-serif rounded-lg hover:bg-coffee-dark transition"> Hubungi Kami </a>
+            <a
+              href="https://api.whatsapp.com/send/?phone=6282258847225&text&type=phone_number&app_absent=0"
+              class="mt-6 inline-block bg-coffee text-white py-2 px-6 font-serif rounded-lg hover:bg-coffee-dark transition"
+            >
+              Hubungi Kami
+            </a>
           </div>
 
           <!-- Gambar -->
           <div class="laptop:w-1/2 mt-10 laptop:mt-0 relative">
-            <img src="assets/abt.jpg" alt="Tentang Kami" class="rounded-lg shadow-lg hover:scale-105 transition transform duration-300" />
+            <img
+              src="assets/abt.jpg"
+              alt="Tentang Kami"
+              class="rounded-lg shadow-lg hover:scale-105 transition transform duration-300"
+            />
           </div>
         </div>
       </div>
@@ -119,15 +197,21 @@
         <!-- About -->
         <div>
           <h3 class="font-semibold text-lg font-serif mb-4">drop.Coffee</h3>
-          <p class="mb-2 text-gray-300 font-serif">Nikmati keseruan bersama drop coffee dan nikmati kopi favorite anda yang anda sukai. Untuk info lebih lanjut, hubungi contact person di bawah ini:</p>
+          <p class="mb-2 text-gray-300 font-serif justify-center">
+            Nikmati keseruan bersama drop coffee dan nikmati kopi favorite anda
+            yang anda sukai. Untuk info lebih lanjut, hubungi contact person di
+            bawah ini:
+          </p>
           <p class="mt-4 text-gray-300 font-serif">dropCoffee@gmail.com</p>
           <p class="text-gray-300">Phone: +62 86538263637</p>
         </div>
 
         <!-- Quick Links -->
         <div>
-          <h3 class="font-semibold text-lg font-serif mb-4 text-center">Quick Links</h3>
-          <ul class="space-y-2 text-gray-300 font-serif">
+          <h3 class="font-semibold text-lg font-serif mb-4 text-center">
+            Quick Links
+          </h3>
+          <ul class="space-y-2 text-gray-300 font-serif text-center">
             <li><a href="about.html" class="hover:underline">Services</a></li>
             <li><a href="about.html" class="hover:underline">Portfolio</a></li>
             <li><a href="about.html" class="hover:underline">About</a></li>
@@ -136,8 +220,10 @@
 
         <!-- Resources -->
         <div>
-          <h3 class="font-bold text-lg font-serif mb-4 text-center">Resources</h3>
-          <ul class="space-y-2 text-gray-300 font-serif">
+          <h3 class="font-bold text-lg font-serif mb-4 text-center">
+            Resources
+          </h3>
+          <ul class="space-y-2 text-gray-300 font-serif text-center">
             <li><a href="#" class="hover:underline">Support</a></li>
             <li><a href="#" class="hover:underline">Privacy Policy</a></li>
             <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
@@ -148,7 +234,7 @@
         <div class="flex flex-col items-center">
           <h3 class="text-lg font-bold mb-4 text-center">Lokasi Kami</h3>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.7157294069983!2d-122.08424968469143!3d37.4219997798257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba4b5fbdc1e1%3A0x697ab5f193b837c2!2sGoogleplex!5e0!3m2!1sen!2sid!4v1620913735023!5m2!1sen!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.228071031036!2d106.81826457512895!3d-6.364522762261051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69eddf7f93cb37%3A0x8dc2f4cf19509cf7!2sKos%20Forji%203!5e0!3m2!1sid!2sid!4v1734407937249!5m2!1sid!2sid"
             class="w-full h-40 rounded shadow-lg"
             style="border: 0"
             allowfullscreen=""
@@ -158,38 +244,77 @@
 
         <!-- Social Media & Email Form -->
         <div>
-          <h3 class="font-bold text-lg font-serif mb-4 text-center">Social Media</h3>
-          <ul class="flex space-x-4 mt-4">
+          <h3 class="font-bold text-lg font-serif mb-4 text-center">
+            Social Media
+          </h3>
+          <ul class="flex space-x-4 mt-4 justify-center">
             <li>
-              <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+              <a
+                href="https://www.instagram.com/daffayssr/"
+                class="text-gray-300 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
             </li>
             <li>
-              <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+              <a
+                href="https://x.com/Alyshia11995942?t=_ourjFr0kfh2NfjrPEQ0XQ&s=09"
+                class="text-gray-300 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
             </li>
             <li>
-              <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+              <a
+                href="https://api.whatsapp.com/send/?phone=6282258847225&text&type=phone_number&app_absent=0"
+                class="text-gray-300 hover:text-white"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
             </li>
             <li>
-              <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook"></i></a>
+              <a
+                href="https://www.facebook.com/Ican.Cibe"
+                class="text-gray-300 hover:text-white"
+                ><i class="fab fa-facebook"></i
+              ></a>
             </li>
           </ul>
-          <form class="mt-6" action="mailto:fadzry1603@gmail.com" method="POST" enctype="text/plain">
-            <input type="text" name="text" placeholder="Masukan Saran & Kritik anda" class="px-4 py-2 w-full rounded bg-white text-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-white" required />
-            <button class="mt-2 w-full bg-coffee py-2 px-4 font-serif rounded hover:bg-coffee-dark transition" type="submit">Send</button>
+          <form
+            class="mt-6"
+            action="mailto:fadzry1603@gmail.com"
+            method="POST"
+            enctype="text/plain"
+          >
+            <input
+              type="text"
+              name="text"
+              placeholder="Masukan Saran & Kritik anda"
+              class="px-4 py-2 w-full rounded bg-white text-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+              required
+            />
+            <button
+              class="mt-2 w-full bg-coffee py-2 px-4 font-serif rounded hover:bg-coffee-dark transition"
+              type="submit"
+            >
+              Send
+            </button>
           </form>
         </div>
       </div>
     </footer>
 
     <script>
-      document.getElementById('navbarToggle').addEventListener('click', function () {
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        dropdownMenu.classList.toggle('hidden');
-      });
+      document
+        .getElementById("navbarToggle")
+        .addEventListener("click", function () {
+          const dropdownMenu = document.getElementById("dropdownMenu");
+          dropdownMenu.classList.toggle("hidden");
+        });
 
       feather.replace();
     </script>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
   </body>
 </html>
