@@ -7,124 +7,90 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://js.stripe.com/v3/"></script>
 
+    <link rel="stylesheet" href="style.css" />
+
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
               coffee: {
-                light: "#D7A98C",
-                DEFAULT: "#8B5E34",
-                dark: "#5C3A2D",
+                light: '#D7A98C',
+                DEFAULT: '#8B5E34',
+                dark: '#5C3A2D',
               },
             },
             screens: {
-              tablet: "640px",
-              laptop: "1024px",
-              desktop: "1280px",
+              tablet: '640px',
+              laptop: '1024px',
+              desktop: '1280px',
             },
           },
         },
       };
     </script>
-    <script src="https://unpkg.com/feather-icons"></script>
+    <head>
+      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+      <script>
+        feather.replace();
+      </script>
+    </head>
   </head>
 
   <body class="bg-gray-100">
     <header class="bg-white shadow">
       <nav class="bg-white shadow-lg fixed w-full z-50">
-        <div
-          class="container mx-auto px-4 flex items-center justify-between h-16"
-        >
+        <div class="container mx-auto px-4 flex items-center justify-between h-16">
           <!-- Logo -->
           <a href="index.html" class="flex items-center">
-            <img src="assets/logo.png" alt="Drop Coffee" class="h-16 tablet:h-20
-            w-16 tablet:w-20 mr-2"" />
+            <img src="assets/logo.png" alt="Drop Coffee" class="h-16 tablet:h-20 w-16 tablet:w-20 mr-2" />
           </a>
 
           <!-- Navbar untuk mode dekstop dan tablet -->
-          <div
-            id="navbarMenu"
-            class="hidden tablet:flex flex-1 justify-center space-x-4 laptop:space-x-6"
-          >
-            <a
-              href="index.html"
-              class="text-gray-700 font-serif hover:text-coffee transition"
-              >Home</a
-            >
-            <a
-              href="product.html"
-              class="text-gray-700 font-serif hover:text-coffee transition"
-              >Products</a
-            >
-            <a
-              href="room.html"
-              class="text-gray-700 font-serif hover:text-coffee transition"
-              >Rooms</a
-            >
-            <a
-              href="about.html"
-              class="text-gray-700 font-serif hover:text-coffee transition"
-              >About Us</a
-            >
+          <div id="navbarMenu" class="hidden tablet:flex flex-1 justify-center space-x-4 laptop:space-x-6">
+            <a href="index.html" class="text-gray-700 font-serif hover:text-coffee transition">Home</a>
+            <a href="product.html" class="text-gray-700 font-serif hover:text-coffee transition">Products</a>
+            <a href="room.html" class="text-gray-700 font-serif hover:text-coffee transition">Rooms</a>
+            <a href="about.html" class="text-gray-700 font-serif hover:text-coffee transition">About Us</a>
           </div>
 
-          <!-- Class untuk masukan ke keranjang -->
-          <div class="flex items-center space-x-6">
-            <a
-              href="#"
-              id="cartButton"
-              class="text-gray-700 hidden tablet:inline-block"
-            >
+          <!-- Cart Button -->
+          <div class="relative">
+            <button id="cartButton" class="text-gray-700 relative">
               <i data-feather="shopping-bag" class="h-5 w-5"></i>
-              <span id="cartCount" class="ml-2">0</span>
-            </a>
+              <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2"> 0 </span>
+            </button>
+
+            <!-- Ringkasan Keranjang -->
+            <div id="cartSummary" class="hidden absolute right-0 mt-2 w-80 bg-white border border-gray-200 shadow-lg rounded-lg p-6">
+              <h3 class="text-xl font-semibold mb-4">Shopping Cart</h3>
+              <ul id="cartItems" class="text-gray-600 space-y-4 mb-4">
+                <!-- Barang akan ditambahkan di sini -->
+              </ul>
+              <p class="text-lg font-semibold text-gray-700">Total : <span id="totalPrice" class="font-bold text-gray-900">Rp 0</span></p>
+              <button id="paymentButton" class="w-full bg-green-500 text-white text-lg font-medium px-4 py-2 rounded hover:bg-green-600 transition">Order Now</button>
+              <!-- Pesan jika keranjang kosong -->
+              <p id="emptyMessage" class="text-red-500 mt-4 text-center hidden">Empty</p>
+
+              <!-- Pesan Pembayaran Sukses -->
+              <p id="successMessage" class="text-green-500 mt-4 text-center hidden">Payment Success!</p>
+            </div>
           </div>
 
           <!-- Hamburger Icon -->
-          <button
-            id="navbarToggle"
-            class="block tablet:hidden text-gray-700 focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+          <button id="navbarToggle" class="block tablet:hidden text-gray-700 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
 
         <!-- Dropdown Menu (Mobile) -->
         <div id="dropdownMenu" class="hidden bg-white shadow-md tablet:hidden">
-          <a
-            href="index.html"
-            class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition"
-            >Home</a
-          >
-          <a
-            href="product.html"
-            class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition"
-            >Products</a
-          >
-          <a
-            href="room.html"
-            class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition"
-            >Rooms</a
-          >
-          <a
-            href="about.html"
-            class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition"
-            >About Us</a
-          >
+          <a href="index.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Home</a>
+          <a href="product.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Products</a>
+          <a href="room.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">Rooms</a>
+          <a href="about.html" class="block px-4 py-2 text-gray-700 font-serif hover:text-coffee hover:bg-gray-100 transition">About Us</a>
 
           <!-- Shopping Bag (Mobile) -->
           <div class="flex items-center justify-center space-x-6 mt-4">
@@ -140,681 +106,303 @@
     <!-- Our Products Section -->
     <section class="bg-white py-12">
       <div class="container mx-auto px-6">
-        <h2 class="text-2xl font-bold text-center text-gray-800 font-serif">
-          Our Products
-        </h2>
-        <p class="text-center text-gray-500 mt-2 font-serif">
-          From Top Quality Materials
-        </p>
+        <h2 class="text-2xl font-bold text-center text-gray-800 font-serif">Our Products</h2>
+        <p class="text-center text-gray-500 mt-2 font-serif">From Top Quality Materials</p>
 
         <!-- Tabs -->
         <div class="flex justify-center space-x-6 mt-6">
-          <button
-            id="tabCoffee"
-            class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition"
-          >
-            COFFEE
-          </button>
-          <button
-            id="tabNonCoffee"
-            class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition"
-          >
-            NON-COFFEE
-          </button>
-          <button
-            id="tabFood"
-            class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition"
-          >
-            FOOD
-          </button>
+          <button id="tabCoffee" class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition">COFFEE</button>
+          <button id="tabNonCoffee" class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition">NON-COFFEE</button>
+          <button id="tabFood" class="py-2 px-6 bg-gray-200 text-gray-800 font-bold rounded-full hover:bg-gray-300 focus:bg-coffee focus:text-white transition">FOOD</button>
         </div>
 
         <!-- Coffee Products -->
-        <div
-          id="coffeeProducts"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
-        >
+        <div id="coffeeProducts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           <!-- Chocolate Latte -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/kopi1.png"
-              alt="Chocolate Latte"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Chocolate Latte
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Chocolate latte adalah perpaduan sempurna antara rasa manis
-              cokelat dan kehangatan susu, menciptakan minuman yang lembut dan
-              memanjakan."
-            </p>
+            <img src="assets/kopi1.png" alt="Chocolate Latte" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Chocolate Latte</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(360 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Chocolate latte adalah perpaduan sempurna antara rasa manis cokelat dan kehangatan susu, menciptakan minuman yang lembut dan memanjakan."</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">30K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark add-to-cart"
-                data-name="Chocolate Latte"
-                data-price="30000"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark add-to-cart" data-name="Chocolate Latte" data-price="30000">+</button>
             </div>
           </div>
           <!-- Mocha Latte -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/kopi2.png"
-              alt="Mocha Latte"
-              class="w-full rounded-t"
-            />
+            <img src="assets/kopi2.png" alt="Mocha Latte" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Mocha Latte</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Mocha latte adalah perpaduan sempurna antara kopi, cokelat, dan
-              susu yang menciptakan rasa manis dan lembut dengan sentuhan
-              kehangatan."
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 5.0 <span class="text-gray-500">(180 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Mocha latte adalah perpaduan sempurna antara kopi, cokelat, dan susu yang menciptakan rasa manis dan lembut dengan sentuhan kehangatan."</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">32K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark add-to-cart" data-name="Mocha Latte" data-price="32000">+</button>
             </div>
           </div>
           <!-- Coffee Latte -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/kopi3.png"
-              alt="Coffee Latte"
-              class="w-full rounded-t"
-            />
+            <img src="assets/kopi3.png" alt="Coffee Latte" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Coffee Latte</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Coffee latte adalah minuman kopi yang lembut dan creamy,
-              perpaduan sempurna antara espresso dan susu yang dihangatkan.”
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 4.8 <span class="text-gray-500">(450 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Coffee latte adalah minuman kopi yang lembut dan creamy, perpaduan sempurna antara espresso dan susu yang dihangatkan.”</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">32K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Hazelnut Latte -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/kopi4.png"
-              alt="Hazelnut Latte"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Hazelnut Latte
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Hazelnut latte adalah minuman kopi yang lembut dan aromatik,
-              memadukan espresso, susu hangat, dan sirup hazelnut untuk cita
-              rasa yang manis dan kaya.”
-            </p>
+            <img src="assets/kopi4.png" alt="Hazelnut Latte" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Hazelnut Latte</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(390 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Hazelnut latte adalah minuman kopi yang lembut dan aromatik, memadukan espresso, susu hangat, dan sirup hazelnut untuk cita rasa yang manis dan kaya.”</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">35K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Vanilla Latte -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/vanilla.png"
-              alt="Chocolate Latte"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Vanilla Latte
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Vanilla latte adalah minuman kopi yang lembut dan manis,
-              menggabungkan espresso, susu, dan sentuhan sirup vanila untuk cita
-              rasa yang memanjakan.”
-            </p>
+            <img src="assets/vanilla.png" alt="Chocolate Latte" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Vanilla Latte</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(360 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Vanilla latte adalah minuman kopi yang lembut dan manis, menggabungkan espresso, susu, dan sentuhan sirup vanila untuk cita rasa yang memanjakan.”</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">32K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Caramel Macchiatto -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/caramel.png"
-              alt="Mocha Latte"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Caramel Macchiatto
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Caramel Macchiatto, perpaduan manis alami dan cita rasa kopi yang
-              kaya, cocok untuk penyemangat hari Anda.”
-            </p>
+            <img src="assets/caramel.png" alt="Mocha Latte" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Caramel Macchiatto</h3>
+            <div class="text-yellow-500 mt-2">⭐ 5.0 <span class="text-gray-500">(180 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Caramel Macchiatto, perpaduan manis alami dan cita rasa kopi yang kaya, cocok untuk penyemangat hari Anda.”</p>
             <br />
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">40K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Americano -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/americano.png"
-              alt="Coffee Latte"
-              class="w-full rounded-t"
-            />
+            <img src="assets/americano.png" alt="Coffee Latte" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Americano</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Americano adalah minuman kopi sederhana yang terbuat dari
-              campuran espresso dan air panas, menghasilkan rasa kopi yang
-              ringan namun tetap kaya.”
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 4.8 <span class="text-gray-500">(450 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Americano adalah minuman kopi sederhana yang terbuat dari campuran espresso dan air panas, menghasilkan rasa kopi yang ringan namun tetap kaya.”</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">25K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Cappuccino -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/kopi4.png"
-              alt="Hazelnut Latte"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Hazelnut Latte
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Hazelnut latte adalah minuman kopi yang lembut dan aromatik,
-              memadukan espresso, susu hangat, dan sirup hazelnut untuk cita
-              rasa yang manis dan kaya.”
-            </p>
+            <img src="assets/kopi4.png" alt="Hazelnut Latte" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Hazelnut Latte</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(390 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Hazelnut latte adalah minuman kopi yang lembut dan aromatik, memadukan espresso, susu hangat, dan sirup hazelnut untuk cita rasa yang manis dan kaya.”</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">35K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
         </div>
 
         <!-- Non-Coffee Products -->
-        <div
-          id="nonCoffeeProducts"
-          class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mt-8"
-        >
+        <div id="nonCoffeeProducts" class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
           <!-- Matcha -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/matcha.png"
-              alt="Matcha"
-              class="w-full rounded-t"
-            />
+            <img src="assets/matcha.png" alt="Matcha" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Matcha</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Matcha memiliki rasa khas yang lembut dan kaya akan antioksidan,
-              memberikan energi yang tahan lama.”
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(360 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Matcha memiliki rasa khas yang lembut dan kaya akan antioksidan, memberikan energi yang tahan lama.”</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">35K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- red velvet -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/redvelvet.png"
-              alt="Red Velvet"
-              class="w-full rounded-t"
-            />
+            <img src="assets/redvelvet.png" alt="Red Velvet" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Red Velvet</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Red Velvet menawarkan perpaduan rasa cokelat yang lembut dan
-              manis dengan tekstur yang lembut dan creamy.”
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 5.0 <span class="text-gray-500">(180 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Red Velvet menawarkan perpaduan rasa cokelat yang lembut dan manis dengan tekstur yang lembut dan creamy.”</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">33K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Choco Hazelnut-->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/choco.png"
-              alt="Choco Hazelnut"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Choco Hazelnut
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Choco Hazelnut memadukan rasa cokelat kaya dengan kacang hazelnut
-              yang gurih, menciptakan sensasi nikmat yang memanjakan lidah.”
-            </p>
+            <img src="assets/choco.png" alt="Choco Hazelnut" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Choco Hazelnut</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.8 <span class="text-gray-500">(450 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Choco Hazelnut memadukan rasa cokelat kaya dengan kacang hazelnut yang gurih, menciptakan sensasi nikmat yang memanjakan lidah.”</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">30K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Taro -->
           <div class="bg-gray-100 p-4 shadow rounded">
             <img src="assets/taro.png" alt="Taro" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Taro</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Taro memiliki rasa manis dan gurih dengan warna ungu yang khas,
-              memberikan sensasi lembut yang menyegarkan.”
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(390 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Taro memiliki rasa manis dan gurih dengan warna ungu yang khas, memberikan sensasi lembut yang menyegarkan.”</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">20K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Strawberry Milkshake -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/strawberry.png"
-              alt="Strawberry Milkshake"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Strawberry Milkshake
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Strawberry Milkshake menyajikan kelezatan strawberry yang segar
-              dipadukan dengan tekstur creamy susu.”
-            </p>
+            <img src="assets/strawberry.png" alt="Strawberry Milkshake" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Strawberry Milkshake</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(360 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Strawberry Milkshake menyajikan kelezatan strawberry yang segar dipadukan dengan tekstur creamy susu.”</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">38K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Lemon Tea -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/lemon.png"
-              alt="Lemon Tea"
-              class="w-full rounded-t"
-            />
+            <img src="assets/lemon.png" alt="Lemon Tea" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Lemon Tea</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 5.0 <span class="text-gray-500">(450 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Lemon Tea menawarkan kesegaran rasa lemon yang asam dengan
-              sentuhan teh yang menyegarkan di setiap tegukan.”
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 5.0 <span class="text-gray-500">(450 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Lemon Tea menawarkan kesegaran rasa lemon yang asam dengan sentuhan teh yang menyegarkan di setiap tegukan.”</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">28K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
 
           <!-- Sweet Tea -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/sweet.png"
-              alt="Sweet Tea"
-              class="w-full rounded-t"
-            />
+            <img src="assets/sweet.png" alt="Sweet Tea" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Sweet Tea</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Sweet Tea adalah teh manis yang memberikan keseimbangan rasa yang
-              menyegarkan dan cocok untuk cuaca panas”
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 4.8 <span class="text-gray-500">(450 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Sweet Tea adalah teh manis yang memberikan keseimbangan rasa yang menyegarkan dan cocok untuk cuaca panas”</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">25K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Sunrise Drink -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/sunrise.png"
-              alt="Sunrise Drink"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Sunrise Drink
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              “Sunrise Drink menyajikan campuran rasa buah yang cerah dan
-              menyegarkan, memberikan sensasi pagi yang penuh energi.”
-            </p>
+            <img src="assets/sunrise.png" alt="Sunrise Drink" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Sunrise Drink</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(390 reviews)</span></div>
+            <p class="text-gray-500 mt-2">“Sunrise Drink menyajikan campuran rasa buah yang cerah dan menyegarkan, memberikan sensasi pagi yang penuh energi.”</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">28K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
         </div>
 
-        <div
-          id="foodProducts"
-          class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mt-8"
-        >
+        <div id="foodProducts" class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
           <!--Tiramisu Cake -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/tiramisu.png"
-              alt="Tiramisu Cake"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Tiramisu Cake
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Tiramisu cake adalah cake lezat yang memadukan rasa manis dan
-              kopi, dengan lapisan krim mascarpone yang lembut dan kenikmatan
-              cokelat yang menggoda."
-            </p>
+            <img src="assets/tiramisu.png" alt="Tiramisu Cake" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Tiramisu Cake</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(360 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Tiramisu cake adalah cake lezat yang memadukan rasa manis dan kopi, dengan lapisan krim mascarpone yang lembut dan kenikmatan cokelat yang menggoda."</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">45K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Croissants -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/croissants.png"
-              alt="Croissants"
-              class="w-full rounded-t"
-            />
+            <img src="assets/croissants.png" alt="Croissants" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Croissants</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Roti khas Prancis berbentuk bulan sabit dengan tekstur renyah di
-              luar dan lembut berlapis di dalam, kaya rasa mentega. Cocok
-              dinikmati dengan kopi atau teh."
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 5.0 <span class="text-gray-500">(180 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Roti khas Prancis berbentuk bulan sabit dengan tekstur renyah di luar dan lembut berlapis di dalam, kaya rasa mentega. Cocok dinikmati dengan kopi atau teh."</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">20K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Waffle & Ice Cream -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/waffle.png"
-              alt="Waffle & Ice Cream"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Waffle & Ice Cream
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Waffle hangat yang renyah di luar dan lembut di dalam, disajikan
-              dengan satu scoop es krim creamy pilihan Anda. Paduan sempurna
-              untuk manisnya hari Anda."
-            </p>
+            <img src="assets/waffle.png" alt="Waffle & Ice Cream" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Waffle & Ice Cream</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.8 <span class="text-gray-500">(450 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Waffle hangat yang renyah di luar dan lembut di dalam, disajikan dengan satu scoop es krim creamy pilihan Anda. Paduan sempurna untuk manisnya hari Anda."</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">30K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Macaron -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/macaron.png"
-              alt="Macaron"
-              class="w-full rounded-t"
-            />
+            <img src="assets/macaron.png" alt="Macaron" class="w-full rounded-t" />
             <h3 class="font-semibold text-lg mt-4 text-coffee">Macaron</h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Kue mungil khas Prancis dengan tekstur renyah di luar dan lembut
-              di dalam, diisi krim manis beragam rasa. Elegan dan lezat untuk
-              dinikmati kapan saja."
-            </p>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(390 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Kue mungil khas Prancis dengan tekstur renyah di luar dan lembut di dalam, diisi krim manis beragam rasa. Elegan dan lezat untuk dinikmati kapan saja."</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">35K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- French Fires w Cheese -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/french.png"
-              alt="French Fires w Cheese"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              French Fires w Cheese
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Kentang goreng renyah disajikan dengan lelehan keju creamy yang
-              gurih. Camilan nikmat untuk memanjakan selera!"
-            </p>
+            <img src="assets/french.png" alt="French Fires w Cheese" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">French Fires w Cheese</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(360 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Kentang goreng renyah disajikan dengan lelehan keju creamy yang gurih. Camilan nikmat untuk memanjakan selera!"</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">23K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Easy Shrimp Linguine Recipe -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/easy.png"
-              alt="Easy Shrimp Linguine Recipe"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Easy Shrimp Linguine Recipe
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Linguine lembut dengan udang segar, dimasak dalam saus creamy
-              beraroma bawang putih dan rempah. Lezat, ringan, dan penuh cita
-              rasa!"
-            </p>
+            <img src="assets/easy.png" alt="Easy Shrimp Linguine Recipe" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Easy Shrimp Linguine Recipe</h3>
+            <div class="text-yellow-500 mt-2">⭐ 5.0 <span class="text-gray-500">(180 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Linguine lembut dengan udang segar, dimasak dalam saus creamy beraroma bawang putih dan rempah. Lezat, ringan, dan penuh cita rasa!"</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">52K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Spagheti Carbonara -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/spagheti.png"
-              alt="Spagheti Carbonara "
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Spagheti Carbonara
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Pasta spaghetti klasik dengan saus creamy dari telur, keju, dan
-              smoked beef, ditaburi lada hitam untuk rasa autentik khas Italia."
-            </p>
+            <img src="assets/spagheti.png" alt="Spagheti Carbonara " class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Spagheti Carbonara</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.8 <span class="text-gray-500">(450 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Pasta spaghetti klasik dengan saus creamy dari telur, keju, dan smoked beef, ditaburi lada hitam untuk rasa autentik khas Italia."</p>
             <br />
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">45K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
           <!-- Vegan Creamy Beef and Shells-->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img
-              src="assets/vegan.png"
-              alt="Vegan Creamy Beef and Shells"
-              class="w-full rounded-t"
-            />
-            <h3 class="font-semibold text-lg mt-4 text-coffee">
-              Vegan Creamy Beef and Shells
-            </h3>
-            <div class="text-yellow-500 mt-2">
-              ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
-            </div>
-            <p class="text-gray-500 mt-2">
-              "Pasta shell lembut dengan saus creamy vegan dan "beef" nabati
-              yang gurih, penuh rasa dan 100% plant-based. Pilihan lezat untuk
-              pecinta vegan!"
-            </p>
+            <img src="assets/vegan.png" alt="Vegan Creamy Beef and Shells" class="w-full rounded-t" />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Vegan Creamy Beef and Shells</h3>
+            <div class="text-yellow-500 mt-2">⭐ 4.9 <span class="text-gray-500">(390 reviews)</span></div>
+            <p class="text-gray-500 mt-2">"Pasta shell lembut dengan saus creamy vegan dan "beef" nabati yang gurih, penuh rasa dan 100% plant-based. Pilihan lezat untuk pecinta vegan!"</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-gray-700">45K</span>
-              <button
-                class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark"
-              >
-                +
-              </button>
+              <button class="bg-coffee text-white px-4 py-2 rounded hover:bg-coffee-dark">+</button>
             </div>
           </div>
         </div>
@@ -827,20 +415,14 @@
         <!-- About -->
         <div>
           <h3 class="font-semibold text-lg font-serif mb-4">drop.Coffee</h3>
-          <p class="mb-2 text-gray-300 font-serif justify-center">
-            Nikmati keseruan bersama drop coffee dan nikmati kopi favorite anda
-            yang anda sukai. Untuk info lebih lanjut, hubungi contact person di
-            bawah ini:
-          </p>
+          <p class="mb-2 text-gray-300 font-serif justify-center">Nikmati keseruan bersama drop coffee dan nikmati kopi favorite anda yang anda sukai. Untuk info lebih lanjut, hubungi contact person di bawah ini:</p>
           <p class="mt-4 text-gray-300 font-serif">dropCoffee@gmail.com</p>
           <p class="text-gray-300">Phone: +62 86538263637</p>
         </div>
 
         <!-- Quick Links -->
         <div>
-          <h3 class="font-semibold text-lg font-serif mb-4 text-center">
-            Quick Links
-          </h3>
+          <h3 class="font-semibold text-lg font-serif mb-4 text-center">Quick Links</h3>
           <ul class="space-y-2 text-gray-300 font-serif text-center">
             <li><a href="about.html" class="hover:underline">Services</a></li>
             <li><a href="about.html" class="hover:underline">Portfolio</a></li>
@@ -850,9 +432,7 @@
 
         <!-- Resources -->
         <div>
-          <h3 class="font-bold text-lg font-serif mb-4 text-center">
-            Resources
-          </h3>
+          <h3 class="font-bold text-lg font-serif mb-4 text-center">Resources</h3>
           <ul class="space-y-2 text-gray-300 font-serif text-center">
             <li><a href="#" class="hover:underline">Support</a></li>
             <li><a href="#" class="hover:underline">Privacy Policy</a></li>
@@ -874,152 +454,184 @@
 
         <!-- Social Media & Email Form -->
         <div>
-          <h3 class="font-bold text-lg font-serif mb-4 text-center">
-            Social Media
-          </h3>
+          <h3 class="font-bold text-lg font-serif mb-4 text-center">Social Media</h3>
           <ul class="flex space-x-4 mt-4 justify-center">
             <li>
-              <a
-                href="https://www.instagram.com/daffayssr/"
-                class="text-gray-300 hover:text-white"
-                ><i class="fab fa-instagram"></i
-              ></a>
+              <a href="https://www.instagram.com/daffayssr/" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
             </li>
             <li>
-              <a
-                href="https://x.com/Alyshia11995942?t=_ourjFr0kfh2NfjrPEQ0XQ&s=09"
-                class="text-gray-300 hover:text-white"
-                ><i class="fab fa-twitter"></i
-              ></a>
+              <a href="https://x.com/Alyshia11995942?t=_ourjFr0kfh2NfjrPEQ0XQ&s=09" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
             </li>
             <li>
-              <a
-                href="https://api.whatsapp.com/send/?phone=6282258847225&text&type=phone_number&app_absent=0"
-                class="text-gray-300 hover:text-white"
-                ><i class="fab fa-whatsapp"></i
-              ></a>
+              <a href="https://api.whatsapp.com/send/?phone=6282258847225&text&type=phone_number&app_absent=0" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
             </li>
             <li>
-              <a
-                href="https://www.facebook.com/Ican.Cibe"
-                class="text-gray-300 hover:text-white"
-                ><i class="fab fa-facebook"></i
-              ></a>
+              <a href="https://www.facebook.com/Ican.Cibe" class="text-gray-300 hover:text-white"><i class="fab fa-facebook"></i></a>
             </li>
           </ul>
-          <form
-            class="mt-6"
-            action="mailto:fadzry1603@gmail.com"
-            method="POST"
-            enctype="text/plain"
-          >
-            <input
-              type="text"
-              name="text"
-              placeholder="Masukan Saran & Kritik anda"
-              class="px-4 py-2 w-full rounded bg-white text-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
-              required
-            />
-            <button
-              class="mt-2 w-full bg-coffee py-2 px-4 font-serif rounded hover:bg-coffee-dark transition"
-              type="submit"
-            >
-              Send
-            </button>
+          <form class="mt-6" action="mailto:fadzry1603@gmail.com" method="POST" enctype="text/plain">
+            <input type="text" name="text" placeholder="Masukan Saran & Kritik anda" class="px-4 py-2 w-full rounded bg-white text-gray-800 shadow-lg focus:outline-none focus:ring-2 focus:ring-white" required />
+            <button class="mt-2 w-full bg-coffee py-2 px-4 font-serif rounded hover:bg-coffee-dark transition" type="submit">Send</button>
           </form>
         </div>
       </div>
     </footer>
 
     <script>
-      let cart = [];
-
-      // Fungsi untuk menambahkan produk ke keranjang
-      function addToCart(name, price) {
-        cart.push({ name, price });
-        updateCart();
-      }
-
-      // Update jumlah produk di keranjang
-      function updateCart() {
-        const cartCount = document.getElementById("cartCount");
-        cartCount.textContent = cart.length; // Menampilkan jumlah produk
-      }
-
-      // Event listener untuk tombol "add-to-cart"
-      document.querySelectorAll(".add-to-cart").forEach((button) => {
-        button.addEventListener("click", function () {
-          const name = button.getAttribute("data-name");
-          const price = parseInt(button.getAttribute("data-price"));
-          addToCart(name, price);
-        });
+      document.getElementById('navbarToggle').addEventListener('click', function () {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('hidden');
       });
-
-      // Ketika klik ikon keranjang, buka proses checkout
-      document
-        .getElementById("cartButton")
-        .addEventListener("click", function () {
-          if (cart.length === 0) {
-            alert("Keranjang Anda kosong!");
-          } else {
-            openCheckout();
-          }
-        });
-
-      // Fungsi untuk membuka alur pembayaran
-      function openCheckout() {
-        const totalAmount = cart.reduce((total, item) => total + item.price, 0);
-        alert("Total pembayaran Anda adalah: " + totalAmount + " IDR");
-
-        // Simulasi pembayaran dengan Stripe atau PayPal
-        startPayment(totalAmount);
-      }
-    </script>
-
-    <script>
-      document
-        .getElementById("navbarToggle")
-        .addEventListener("click", function () {
-          const dropdownMenu = document.getElementById("dropdownMenu");
-          dropdownMenu.classList.toggle("hidden");
-        });
 
       feather.replace();
 
       // Referensi elemen
-      const tabCoffee = document.getElementById("tabCoffee");
-      const tabNonCoffee = document.getElementById("tabNonCoffee");
-      const tabFood = document.getElementById("tabFood");
-      const coffeeProducts = document.getElementById("coffeeProducts");
-      const nonCoffeeProducts = document.getElementById("nonCoffeeProducts");
-      const foodProducts = document.getElementById("foodProducts");
+      const tabCoffee = document.getElementById('tabCoffee');
+      const tabNonCoffee = document.getElementById('tabNonCoffee');
+      const tabFood = document.getElementById('tabFood');
+      const coffeeProducts = document.getElementById('coffeeProducts');
+      const nonCoffeeProducts = document.getElementById('nonCoffeeProducts');
+      const foodProducts = document.getElementById('foodProducts');
 
       // Fungsi untuk mengganti tampilan produk
       function showProducts(category) {
-        if (category === "coffee") {
-          coffeeProducts.classList.remove("hidden");
-          nonCoffeeProducts.classList.add("hidden");
-          foodProducts.classList.add("hidden");
-        } else if (category === "noncoffee") {
-          nonCoffeeProducts.classList.remove("hidden");
-          coffeeProducts.classList.add("hidden");
-          foodProducts.classList.add("hidden");
-        } else if (category === "food") {
-          foodProducts.classList.remove("hidden");
-          coffeeProducts.classList.add("hidden");
-          nonCoffeeProducts.classList.add("hidden");
+        if (category === 'coffee') {
+          coffeeProducts.classList.remove('hidden');
+          nonCoffeeProducts.classList.add('hidden');
+          foodProducts.classList.add('hidden');
+        } else if (category === 'noncoffee') {
+          nonCoffeeProducts.classList.remove('hidden');
+          coffeeProducts.classList.add('hidden');
+          foodProducts.classList.add('hidden');
+        } else if (category === 'food') {
+          foodProducts.classList.remove('hidden');
+          coffeeProducts.classList.add('hidden');
+          nonCoffeeProducts.classList.add('hidden');
         }
       }
 
       // Event listener
-      tabCoffee.addEventListener("click", () => showProducts("coffee"));
-      tabNonCoffee.addEventListener("click", () => showProducts("noncoffee"));
-      tabFood.addEventListener("click", () => showProducts("food"));
+      tabCoffee.addEventListener('click', () => showProducts('coffee'));
+      tabNonCoffee.addEventListener('click', () => showProducts('noncoffee'));
+      tabFood.addEventListener('click', () => showProducts('food'));
+
+      // Variabel keranjang
+      let cart = [];
+      let totalTagihan = 0;
+
+      // Ambil elemen-elemen penting
+      const cartItems = document.getElementById('cartItems');
+      const totalPrice = document.getElementById('totalPrice');
+      const cartCount = document.getElementById('cartCount');
+      const cartSummary = document.getElementById('cartSummary');
+      const addToCartButtons = document.querySelectorAll('.add-to-cart');
+      const cartButton = document.getElementById('cartButton');
+      const paymentButton = document.getElementById('paymentButton'); // Tombol pembayaran
+
+      // Event listener tombol tambah produk
+      addToCartButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const itemName = button.getAttribute('data-name');
+          const itemPrice = parseInt(button.getAttribute('data-price'));
+
+          // Cek apakah item sudah ada di keranjang
+          const existingItem = cart.find((item) => item.name === itemName);
+
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+          }
+
+          // Update total tagihan
+          totalTagihan += itemPrice;
+
+          // Update tampilan keranjang
+          updateCartUI();
+        });
+      });
+
+      // Fungsi untuk memperbarui tampilan keranjang
+      function updateCartUI() {
+        cartItems.innerHTML = ''; // Kosongkan list
+
+        cart.forEach((item) => {
+          const li = document.createElement('li');
+          li.classList.add('flex', 'items-center', 'justify-between', 'border-b', 'pb-2');
+
+          // Kiri: Nama Item dan Quantity
+          const itemDetails = document.createElement('div');
+          itemDetails.classList.add('flex', 'items-center', 'space-x-2');
+
+          const itemName = document.createElement('span');
+          itemName.textContent = `${item.name} x${item.quantity}`;
+          itemName.classList.add('font-medium', 'text-gray-700');
+
+          // Harga Item
+          const itemPrice = document.createElement('span');
+          itemPrice.textContent = `Rp ${item.price * item.quantity}`;
+          itemPrice.classList.add('text-gray-600', 'text-sm');
+
+          // Tombol Kurang
+          const minusButton = document.createElement('button');
+          minusButton.classList.add('bg-red-500', 'text-white', 'w-8', 'h-8', 'rounded', 'flex', 'items-center', 'justify-center');
+          minusButton.textContent = '-';
+          minusButton.addEventListener('click', () => decreaseQuantity(item));
+
+          // Gabungkan elemen
+          itemDetails.appendChild(itemName);
+          itemDetails.appendChild(itemPrice);
+          li.appendChild(itemDetails);
+          li.appendChild(minusButton);
+
+          cartItems.appendChild(li);
+        });
+
+        // Update total harga dan jumlah barang
+        totalPrice.textContent = `Rp ${totalTagihan}`;
+        cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+      }
+
+      // Fungsi untuk mengurangi quantity barang
+      function decreaseQuantity(item) {
+        if (item.quantity > 1) {
+          item.quantity -= 1;
+          totalTagihan -= item.price;
+        } else {
+          // Jika quantity 1, hapus item dari keranjang
+          cart = cart.filter((i) => i !== item);
+          totalTagihan -= item.price;
+        }
+
+        updateCartUI(); // Update tampilan setelah perubahan
+      }
+
+      // Toggle ringkasan keranjang saat tombol keranjang ditekan
+      cartButton.addEventListener('click', () => {
+        cartSummary.classList.toggle('hidden');
+      });
+
+      // Event listener tombol pembayaran
+      paymentButton.addEventListener('click', () => {
+        if (cart.length === 0) {
+          alert('Your cart is empty. Please add items before proceeding to checkout.');
+        } else {
+          // Tampilkan alert pembayaran
+          alert(`Thank you! Your total payment is : Rp ${totalTagihan}`);
+
+          // Reset keranjang
+          cart = [];
+          totalTagihan = 0;
+
+          // Update tampilan
+          updateCartUI();
+
+          // Sembunyikan ringkasan keranjang
+          cartSummary.classList.add('hidden');
+        }
+      });
     </script>
 
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
   </body>
 </html>
