@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Drops Coffee</title>
+    <title>Drop Coffee</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -152,6 +152,12 @@
           >
             <!-- Tanggal & Waktu akan ditampilkan di sini -->
           </p>
+          <a
+          href="product.html"
+          class="mt-6 inline-block bg-coffee text-white py-2 px-6 rounded-lg hover:bg-coffee-dark transition"
+        >
+          ORDER NOW
+        </a>
         </div>
       </div>
     </section>
@@ -293,21 +299,19 @@
           </div>
         </div>
 
-        <!-- Non-Coffee Products -->
+        <!-- Non Coffee Products -->
         <div
           id="nonCoffeeProducts"
-          class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mt-8"
+          class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
         >
           <!-- Matcha -->
-          <div
-            class="bg-gray-100 p-4 shadow rounded max-w-md mx-auto rounded-xl shadow-md overflow-hidden md:max-w-2xl"
-          >
+          <div class="bg-gray-100 p-4 shadow rounded">
             <img
               src="assets/matcha.png"
               alt="Matcha"
               class="w-full rounded-t"
             />
-            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
+            <h3 class="font-semibold text-lg mt-4 text-coffee">
               Matcha
             </h3>
             <div class="text-yellow-500 mt-2">
@@ -317,18 +321,15 @@
               “Matcha memiliki rasa khas yang lembut dan kaya akan antioksidan,
               memberikan energi yang tahan lama.”
             </p>
-            <br />
           </div>
-          <!-- red velvet -->
+          <!-- Red Velvet -->
           <div class="bg-gray-100 p-4 shadow rounded">
             <img
               src="assets/redvelvet.png"
               alt="Red Velvet"
               class="w-full rounded-t"
             />
-            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
-              Red Velvet
-            </h3>
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Red Velvet</h3>
             <div class="text-yellow-500 mt-2">
               ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
             </div>
@@ -336,18 +337,15 @@
               “Red Velvet menawarkan perpaduan rasa cokelat yang lembut dan
               manis dengan tekstur yang lembut dan creamy.”
             </p>
-            <br />
           </div>
-          <!-- Choco Hazelnut-->
+          <!-- Choco Hazelnut -->
           <div class="bg-gray-100 p-4 shadow rounded">
             <img
               src="assets/choco.png"
               alt="Choco Hazelnut"
               class="w-full rounded-t"
             />
-            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
-              Choco Hazelnut
-            </h3>
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Choco Hazelnut</h3>
             <div class="text-yellow-500 mt-2">
               ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
             </div>
@@ -358,8 +356,12 @@
           </div>
           <!-- Taro -->
           <div class="bg-gray-100 p-4 shadow rounded">
-            <img src="assets/taro.png" alt="Taro" class="w-full rounded-t" />
-            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
+            <img
+            src="assets/taro.png" 
+            alt="Taro"
+              class="w-full rounded-t"
+            />
+            <h3 class="font-semibold text-lg mt-4 text-coffee">
               Taro
             </h3>
             <div class="text-yellow-500 mt-2">
@@ -369,13 +371,13 @@
               “Taro memiliki rasa manis dan gurih dengan warna ungu yang khas,
               memberikan sensasi lembut yang menyegarkan.”
             </p>
-            <br />
           </div>
-        </div>
+        </div>  
 
+        <!-- Food Products -->
         <div
           id="foodProducts"
-          class="hidden grid grid-cols-1 md:grid-cols-4 gap-6 mt-8"
+          class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
         >
           <!--Tiramisu Cake -->
           <div class="bg-gray-100 p-4 shadow rounded">
@@ -384,18 +386,19 @@
               alt="Tiramisu Cake"
               class="w-full rounded-t"
             />
-            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
+            <h3 class="font-semibold text-lg mt-4 text-coffee">
               Tiramisu Cake
             </h3>
             <div class="text-yellow-500 mt-2">
               ⭐ 4.9 <span class="text-gray-500">(360 reviews)</span>
             </div>
             <p class="text-gray-500 mt-2">
-              Tiramisu cake adalah cake lezat yang memadukan rasa manis dan
+              "Tiramisu cake adalah cake lezat yang memadukan rasa manis dan
               kopi, dengan lapisan krim mascarpone yang lembut dan kenikmatan
-              cokelat yang menggoda.
+              cokelat yang menggoda."
             </p>
           </div>
+
           <!-- Croissants -->
           <div class="bg-gray-100 p-4 shadow rounded">
             <img
@@ -403,18 +406,17 @@
               alt="Croissants"
               class="w-full rounded-t"
             />
-            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
-              Croissants
-            </h3>
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Croissants</h3>
             <div class="text-yellow-500 mt-2">
               ⭐ 5.0 <span class="text-gray-500">(180 reviews)</span>
             </div>
             <p class="text-gray-500 mt-2">
-              Roti khas Prancis berbentuk bulan sabit dengan tekstur renyah di
+              "Roti khas Prancis berbentuk bulan sabit dengan tekstur renyah di
               luar dan lembut berlapis di dalam, kaya rasa mentega. Cocok
-              dinikmati dengan kopi atau teh.
+              dinikmati dengan kopi atau teh."
             </p>
           </div>
+
           <!-- Waffle & Ice Cream -->
           <div class="bg-gray-100 p-4 shadow rounded">
             <img
@@ -422,18 +424,17 @@
               alt="Waffle & Ice Cream"
               class="w-full rounded-t"
             />
-            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
-              Waffle & Ice Cream
-            </h3>
+            <h3 class="font-semibold text-lg mt-4 text-coffee">Waffle & Ice Cream</h3>
             <div class="text-yellow-500 mt-2">
               ⭐ 4.8 <span class="text-gray-500">(450 reviews)</span>
             </div>
             <p class="text-gray-500 mt-2">
-              Waffle hangat yang renyah di luar dan lembut di dalam, disajikan
+              "Waffle hangat yang renyah di luar dan lembut di dalam, disajikan
               dengan satu scoop es krim creamy pilihan Anda. Paduan sempurna
-              untuk manisnya hari Anda.
+              untuk manisnya hari Anda."
             </p>
           </div>
+
           <!-- Macaron -->
           <div class="bg-gray-100 p-4 shadow rounded">
             <img
@@ -441,20 +442,20 @@
               alt="Macaron"
               class="w-full rounded-t"
             />
-            <h3 class="font-semibold text-lg mt-4 text-coffee font-['Road']">
+            <h3 class="font-semibold text-lg mt-4 text-coffee">
               Macaron
             </h3>
             <div class="text-yellow-500 mt-2">
               ⭐ 4.9 <span class="text-gray-500">(390 reviews)</span>
             </div>
             <p class="text-gray-500 mt-2">
-              Kue mungil khas Prancis dengan tekstur renyah di luar dan lembut
+              "Kue mungil khas Prancis dengan tekstur renyah di luar dan lembut
               di dalam, diisi krim manis beragam rasa. Elegan dan lezat untuk
-              dinikmati kapan saja.
+              dinikmati kapan saja."
             </p>
           </div>
         </div>
-      </div>
+
       <div class="text-center mt-6">
         <a
           href="product.html"
